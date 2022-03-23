@@ -25,7 +25,7 @@ const View = ({person, setPerson, personArr, error, sameNameSurname, showData, s
     }
 
     return (
-        <>
+        <>            
             {error ? <h2 className='View-p'>Ошибка((</h2> : null}
             {sameNameSurname.length === 0 && !person ? <h2 className='View-howName'>Как тебя зовут?</h2> : null}
             {"1" in sameNameSurname && !person ? <h2>Оу, да их тут {sameNameSurname.length}</h2> : null}
@@ -34,6 +34,7 @@ const View = ({person, setPerson, personArr, error, sameNameSurname, showData, s
                 {showData ?  
                 <div className='View-info'>
                     <h2 className='View-h2'>{person.name + " " + person.surname}</h2>
+                    <p className='View-p'>Группа: {person.group}</p>
                     <p className='View-p'>Номер по списку: {person.numberOnTheList}</p>
                     <p className='View-p'>Номер по зачетке: {person.numberOnTheRecordBook}</p>
                 </div>

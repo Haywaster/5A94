@@ -12,14 +12,29 @@ const SearchPerson = ({items, enterValue, setEnteredValue, sameNameSurname, setS
         setEnteredValue('')
 
         const personArr = items.students.filter(item => {
+            let obj;
+
             if (item.name.toLowerCase() === enterValue.toLowerCase()) {
                 setError(false)
                 return item
-            } else if (item.altname.toLowerCase() === enterValue.toLowerCase()) {
-                setError(false)
-                return item
+            } else if (typeof item.altname === 'string') {
+                if (item.altname.toLowerCase() === enterValue.toLowerCase()) {
+                    setError(false)
+                    return item
+                }
+            } else if (typeof item.altname === 'object') {
+                item.altname.forEach(name => {
+                    if (name.toLowerCase() === enterValue.toLowerCase()) {
+                        setError(false)
+                        obj = item
+                    }
+                })
+                return obj
             }
         })
+
+
+        console.log(personArr)
         setPersonArr(personArr)
         setShowData(false)
 

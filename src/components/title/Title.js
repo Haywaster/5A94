@@ -1,6 +1,11 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom'
 import './Title.css'
 
-const Title = ({setPerson, setSameNameSurname, setError}) => {
+const Title = () => {
+    const [sameNameSurname, setSameNameSurname] = useState([]);
+    const [error, setError] = useState(false);
+    const [person, setPerson] = useState(null);
 
     function restart() {
         setPerson(null)
@@ -9,7 +14,9 @@ const Title = ({setPerson, setSameNameSurname, setError}) => {
     }
 
     return (
-        <h1 onClick={() => restart()} className="Title">5А94 Group</h1>
+        <Link to='/'>
+            <h1 onClick={() => restart()} className="Title">Data Group</h1>
+        </Link>
     )
 }
 
