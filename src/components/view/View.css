@@ -1,4 +1,5 @@
 .View-ol {
+    text-align: center;
     list-style-type: none;
     margin: 0px;
     padding-left: 0px;
@@ -22,6 +23,7 @@
     margin-top: 10px;
     color: #61dafb;
     text-decoration: none;
+    text-align: center;
     transition: 0.3s;
 }
 
@@ -74,6 +76,7 @@
 
 .View-p {
     margin: 0;
+    text-align: center;
 }
 
 .View-info {
@@ -83,4 +86,5 @@
 
 .View-h2 {
     margin-top: 0px;
+    text-align: center;
 }

@@ -1,16 +1,47 @@
 import './SearchPerson.css'
 import ArrowBack from './arrowBack/ArrowBack'
+import Button from './button/Button';
 
-const SearchPerson = ({items, enterValue, setEnteredValue, sameNameSurname, setSameNameSurname, person, setPerson, setPersonArr, setError, setShowData}) => {    
-    const addName = (event) => {
+const SearchPerson = ({items, enterValue, setEnteredValue, sameNameSurname, setSameNameSurname, person, setPerson, setPersonArr, setError, setShowData, placeholder, inputType, switchNumber, setSwitchNumber}) => {    
+
+    function search(e) {
+        e.preventDefault();
+        setEnteredValue('')
+
+        if (window.location.pathname === '/name') {
+            searchPerson(e)
+        } else if (window.location.pathname === '/number') {
+            searchNumber(e)
+        }
+    }
+    
+    function addName (event) {
         event.preventDefault();
         setEnteredValue(event.target.value)
     }
 
-    const searchPerson = (e) => {
-        e.preventDefault();
-        setEnteredValue('')
+    function searchNumber() {
+        const personArr = items.students.filter(item => {
+            if (switchNumber === 'По списку') {
+                if(item.numberOnTheList === enterValue) {
+                    setError(false)
+                    return item
+                }
+            } else if (switchNumber === 'По зачетке') {
+                let number = item.numberOnTheRecordBook.slice(5)
+                if (number.startsWith(0)) {
+                    number = number.slice(1)
+                }
+                if(number === enterValue) {
+                    setError(false)
+                    return item
+                }
+            }
+        })
+        setCustom(personArr)
+    }
 
+    function searchPerson() {
         const personArr = items.students.filter(item => {
             let obj;
 
@@ -32,9 +63,10 @@ const SearchPerson = ({items, enterValue, setEnteredValue, sameNameSurname, setS
                 return obj
             }
         })
+        setCustom(personArr)
+    }
 
-
-        console.log(personArr)
+    function setCustom(personArr) {
         setPersonArr(personArr)
         setShowData(false)
 
@@ -63,13 +95,17 @@ const SearchPerson = ({items, enterValue, setEnteredValue, sameNameSurname, setS
     }
     
     return (
+        <>
         <form id="signin" autoComplete="off">
             <div id="wrapper">
                 {person || "1" in sameNameSurname ? <ArrowBack restart={restart}/> : null}
-                <input type="text" id="user" name="user" onChange={addName} value={enterValue} placeholder='Введите ваше имя'></input>
-                <button type="submit" onClick={searchPerson}>&#xf0da;</button>
-            </div>     
+                <input type={inputType} id="user" name="user" onChange={addName} value={enterValue} placeholder={placeholder}></input>
+                <button type="submit" onClick={search}>&#xf0da;</button>
+            </div>
         </form>
+        
+        {window.location.pathname === '/number' ? <Button setSwitchNumber={setSwitchNumber} switchNumber={switchNumber}/> : null}
+        </>
     )
 }
 
