@@ -4,7 +4,7 @@
     -1px 1px 1px silver;
     color: white;
     transition: all .5s;
-    position: absolute; 
+    position: fixed; 
     top: 0; left: 0; 
     z-index:500;
     font-style: italic;

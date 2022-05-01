@@ -1,8 +1,32 @@
 .View-ol {
-    text-align: center;
-    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-evenly;
+    align-items: center;
     margin: 0px;
     padding-left: 0px;
+}
+
+.View-li {
+    width: 127px;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+
+.View-row {
+    display: flex;
+    width: 50vw;
+    justify-content: space-evenly;
+}
+
+.View-row:last-child {
+    margin-top: 20px;
 }
 
 .View-img {
@@ -11,11 +35,6 @@
     width: 270px;
     border-radius: 10px;
     cursor: pointer;
-}
-
-.View-img:hover{
-    width: 300px;
-    opacity: .6;
 }
 
 .View-link {
@@ -38,42 +57,6 @@
     transition: all 1s;
 }
 
-.View-h2:hover:after {
-    width: 0%;
-    border-bottom-width: 2px;
-  }
-
-.View-link:hover {
-    color: pink
-}
-
-.View-li {
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.View-li:hover {
-    color: pink
-}
-
-.View-li::before {
-    display: block;
-	position: relative;
-	height: 2px;
-	background: blue;
-	content: '';
-	z-index: 1;
-}
-
-.View-li::after {
-    display: block;
-	position: relative;
-	height: 2px;
-	background: blue;
-	content: '';
-	z-index: 1;
-}
-
 .View-p {
     margin: 0;
     text-align: center;
@@ -87,4 +70,34 @@
 .View-h2 {
     margin-top: 0px;
     text-align: center;
+}
+
+@media (max-width: 700px) {
+    .View-row {
+        width: 90vw;
+    }
+    .View-li li {
+        background-color: dimgrey;
+        border-radius: 10px;
+    }
+}
+
+@media (min-width: 770px) {
+    .View-h2:hover:after {
+        width: 0%;
+        border-bottom-width: 2px;
+      }
+    
+    .View-link:hover {
+        color: pink
+    }
+    
+    .View-li:hover {
+        color: pink
+    }
+
+    .View-img:hover{
+        width: 300px;
+        opacity: .6;
+    }
 }
